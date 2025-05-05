@@ -13,6 +13,12 @@ pip install pretty_prompt_compare
 
 ## Usage
 
+> [!IMPORTANT]  
+> This project leverages a parameterized infix operator (`|PrettyCompare|`) to simplify comparing prompts/responses using readable syntax.
+
+**To compare prompts**, use the `compare_prompt=True` argument. The prompt will be printed in the console with differences highlighted, and f-string expressions shown in a different color.
+
+
 ```python
 from pretty_prompt_compare import PrettyCompare
 
@@ -21,8 +27,6 @@ pretty_compare = PrettyCompare(compare_prompt=True)
 "Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
 ```
 <img src="./img/output_prompt.png" width="600"/>
-
-To compare prompts, use the `compare_prompt=True` argument. The prompt will be printed in the console with differences highlighted, and f-string expressions shown in a different color.
 
 The two prompts on either side of the `|pretty_compare|` operation will be printed using the following format:
 
@@ -35,10 +39,13 @@ If `print_separator=True`, a separator line will be printed between the two prom
 
 In the printed second prompt:
 
-- Characters that appear only in the first prompt will be highlighted using `COLOR_PALETTE["delete"]` and shown with a strikethrough.
+- Characters that appear only in the first prompt will be highlighted using `COLOR_PALETTE["delete"]` and shown with a ~~strikethrough~~.
 - Characters that appear only in the second prompt will be highlighted using `COLOR_PALETTE["insert"]`.
 
-In both prompts, the f-string expressions will be highlighted in value of `COLOR_PALETTE["f-string expression"]`.
+In both prompts, the `{f-string expressions}` will be highlighted in value of `COLOR_PALETTE["f-string expression"]`.
+
+
+**To compare responses**, use the `compare_response=True` argument. The responses will be printed in the console with differences highlighted, and target strings highlighted in a different color.
 
 ```python
 from pretty_prompt_compare import PrettyCompare
@@ -49,11 +56,10 @@ pretty_compare = PrettyCompare(compare_response=True, target=["brave", "beautifu
 ```
 <img src="./img/output_response.png" width="600"/>
 
-To compare responses, use the `compare_response=True` argument. The responses will be printed in the console with differences highlighted, and target strings highlighted in a different color.
+The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]` with <u>underline</u> and **bold**.
 
-The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]`.
 
-To Change the color palette, use the `color_palette` argument.
+**To Change the color palette**, use the `color_palette` argument.
 
 ```python
 # compare differences in prompts with custom color palette
