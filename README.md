@@ -58,7 +58,7 @@ pip install pretty_prompt_compare
 
   <img src="./img/output_response.png" width="600"/>
 
-  The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]` with <u>underline</u> and **bold**.
+  The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]` with <ins>underline</ins> and **bold**.
 
 - **To Change the color palette**, use the `color_palette` argument.
 
