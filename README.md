@@ -2,6 +2,7 @@
 
 A python package for comparing prompts/responses with pretty print.
 
+[pretty_prompt_compare.webm](https://github.com/user-attachments/assets/023f8866-1846-437c-9201-0fbd56291395)
 
 In the age of LLMs, a lot of prompt engineering comes down to comparing prompts and their responses. This Python package helps by pretty-printing prompts and responses, making it easier to see differences and embed this workflow into your Python development environment.
 
