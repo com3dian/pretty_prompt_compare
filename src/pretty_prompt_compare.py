@@ -1,4 +1,26 @@
-# pretty_prompt_compare
+"""
+MIT License
+
+Copyright (c) 2025 Zehao Lu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"""
 
 from difflib import SequenceMatcher
 from rich.console import Console
@@ -8,6 +30,7 @@ import re
 from infix import make_infix
 from functools import wraps
 
+# Default color palette
 COLOR_PALETTE = {
     "delete": "#FF90BB",
     "insert": "#7CD9E6",
@@ -17,7 +40,14 @@ COLOR_PALETTE = {
 }
 
 def _highlight_fstring_parts(prompt: str, default_style: str, expr_style: str) -> Text:
-    """Highlight f-string parts in a string."""
+    """
+    Highlight f-string parts in a string.
+
+    Args:
+        prompt (str): The string to highlight f-string parts in.
+        default_style (str): The default style to apply to the string.
+        expr_style (str): The style to apply to the f-string parts.
+    """
     text = Text()
     pattern = re.compile(r"({[^{}]+})")
     last_end = 0
@@ -110,7 +140,7 @@ def _highlight_differences(
             text_prompt_b.append(Text(prompt_b[j1:j2], style=f"{color_insert}"))
 
     console = Console()
-    separator = Text("-------------------------------------", style=color_separator)
+    separator = Text("-" * 79, style=color_separator)
     console.print(text_prompt_a)
     if print_separator:
         console.print(separator)
@@ -167,23 +197,23 @@ def _highlight_difference_with_focus(
     for tag, i1, i2, j1, j2 in matcher.get_opcodes():
         if tag == "equal":
             inserted_segment = text_output_b_with_focus[j1:j2].copy()  # Make a copy
-            inserted_segment.stylize(f"{color_equal}")  # or any additional style
+            inserted_segment.stylize(f"{color_equal}")
             text_output_b.append(inserted_segment)
         elif tag == "replace":
             # Strike with colored line, default text color
             text_output_b.append(Text(output_a[i1:i2], style=f"strike {color_delete}"))
             inserted_segment = text_output_b_with_focus[j1:j2].copy()  # Make a copy
-            inserted_segment.stylize(f"{color_insert}")  # or any additional style
+            inserted_segment.stylize(f"{color_insert}")
             text_output_b.append(inserted_segment)
         elif tag == "delete":
             text_output_b.append(Text(output_a[i1:i2], style=f"strike {color_delete}"))
         elif tag == "insert":
             inserted_segment = text_output_b_with_focus[j1:j2].copy()  # Make a copy
-            inserted_segment.stylize(f"{color_insert}")  # or any additional style
+            inserted_segment.stylize(f"{color_insert}")
             text_output_b.append(inserted_segment)
 
     console = Console()
-    separator = Text("-------------------------------------", style=color_separator)
+    separator = Text("-" * 79, style=color_separator)
     console.print(text_output_a)
     if print_separator:
         console.print(separator)
@@ -214,13 +244,7 @@ def validate_color_palette_and_args(
                     - (len(func.__code__.co_varnames) - len(func.__defaults__))
                 ]
 
-            color_field = [
-                "delete",
-                "insert",
-                "equal",
-                "f-string expression",
-                "separator",
-            ]
+            color_field = COLOR_PALETTE.keys()
             if not set(color_field).issubset(color_palette.keys()):
                 raise ValueError(f"color_palette must have the keys: {color_field}")
             for color_key in color_field:
