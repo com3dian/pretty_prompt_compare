@@ -16,57 +16,58 @@ pip install pretty_prompt_compare
 > [!IMPORTANT]  
 > This project leverages a parameterized infix operator (`|PrettyCompare|`) to simplify comparing prompts/responses using readable syntax.
 
-**To compare prompts**, use the `compare_prompt=True` argument. The prompt will be printed in the console with differences highlighted, and f-string expressions shown in a different color.
+- **To compare prompts**, use the `compare_prompt=True` argument. The prompt will be printed in the console with differences highlighted, and f-string expressions shown in a different color.
 
 
-```python
-from pretty_prompt_compare import PrettyCompare
+  ```python
+  from pretty_prompt_compare import PrettyCompare
 
-# to compare differences in prompts
-pretty_compare = PrettyCompare(compare_prompt=True)
-"Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
-```
-<img src="./img/output_prompt.png" width="600"/>
+  # to compare differences in prompts
+  pretty_compare = PrettyCompare(compare_prompt=True)
+  "Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
+  ```
 
-The two prompts on either side of the `|pretty_compare|` operation will be printed using the following format:
+  <img src="./img/output_prompt.png" width="600"/>
 
-```python
-- {first prompt}
-+ {second prompt}
-```
+  The two prompts on either side of the `|pretty_compare|` operation will be printed using the following format:
 
-If `print_separator=True`, a separator line will be printed between the two prompts.
+  ```python
+  - {first prompt}
+  + {second prompt}
+  ```
 
-In the printed second prompt:
+  If `print_separator=True`, a separator line will be printed between the two prompts.
 
-- Characters that appear only in the first prompt will be highlighted using `COLOR_PALETTE["delete"]` and shown with a ~~strikethrough~~.
-- Characters that appear only in the second prompt will be highlighted using `COLOR_PALETTE["insert"]`.
+  In the printed second prompt:
 
-In both prompts, the `{f-string expressions}` will be highlighted in value of `COLOR_PALETTE["f-string expression"]`.
+  - Characters that appear only in the first prompt will be highlighted using `COLOR_PALETTE["delete"]` and shown with a ~~strikethrough~~.
+  - Characters that appear only in the second prompt will be highlighted using `COLOR_PALETTE["insert"]`.
 
-
-**To compare responses**, use the `compare_response=True` argument. The responses will be printed in the console with differences highlighted, and target strings highlighted in a different color.
-
-```python
-from pretty_prompt_compare import PrettyCompare
-
-# to compare differences in responses
-pretty_compare = PrettyCompare(compare_response=True, target=["brave", "beautiful", "world"])
-"Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
-```
-<img src="./img/output_response.png" width="600"/>
-
-The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]` with <u>underline</u> and **bold**.
+  In both prompts, the `{f-string expressions}` will be highlighted in value of `COLOR_PALETTE["f-string expression"]`.
 
 
-**To Change the color palette**, use the `color_palette` argument.
+- **To compare responses**, use the `compare_response=True` argument. The responses will be printed in the console with differences highlighted, and target strings highlighted in a different color.
 
-```python
-# compare differences in prompts with custom color palette
-pretty_compare = PrettyCompare(compare_prompt=True, color_palette=...)
-```
-The default color palette can be found at
-https://github.com/com3dian/pretty_prompt_compare/blob/7cbad091065d0b962fb7288b090333bc95ede305/src/pretty_prompt_compare.py#L34-L40
+  ```python
+  from pretty_prompt_compare import PrettyCompare
+
+  # to compare differences in responses
+  pretty_compare = PrettyCompare(compare_response=True, target=["brave", "beautiful", "world"])
+  "Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
+  ```
+
+  <img src="./img/output_response.png" width="600"/>
+
+  The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]` with <u>underline</u> and **bold**.
+
+- **To Change the color palette**, use the `color_palette` argument.
+
+  ```python
+  # compare differences in prompts with custom color palette
+  pretty_compare = PrettyCompare(compare_prompt=True, color_palette=...)
+  ```
+  The default color palette can be found at
+  https://github.com/com3dian/pretty_prompt_compare/blob/7cbad091065d0b962fb7288b090333bc95ede305/src/pretty_prompt_compare.py#L34-L40
 
 ## License
 
