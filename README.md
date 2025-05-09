@@ -70,6 +70,12 @@ pip install pretty_prompt_compare
   The default color palette can be found at
   https://github.com/com3dian/pretty_prompt_compare/blob/7cbad091065d0b962fb7288b090333bc95ede305/src/pretty_prompt_compare.py#L34-L40
 
+
+## Note
+
+The prompts/responses are compared using the `difflib.SequenceMatcher` class. The algorithm for text comparison is based on the [Ratcliff/Obershelp pattern recognition algorithm](https://en.wikipedia.org/wiki/Gestalt_pattern_matching). For more reference please visit https://docs.python.org/3/library/difflib.html#difflib.SequenceMatcher.
+
+
 ## License
 
 MIT License
