@@ -4,7 +4,7 @@ A python package for comparing prompts/responses with pretty print.
 
 https://github.com/user-attachments/assets/ef152000-a954-4e3e-ad05-47f840d0db09
 
-In the age of LLMs, a lot of prompt engineering comes down to comparing prompts and their responses. This Python package helps by pretty-printing prompts and responses, making it easier to see differences and embed this workflow into your Python development environment.
+In the age of LLMs, a lot of prompt engineering comes down to comparing prompts and their responses. This Python package helps by pretty-printing pairs of prompts and responses, making it easier to see differences and embed this workflow into your Python development environment.
 
 ## Installation
 
@@ -28,7 +28,7 @@ pip install pretty_prompt_compare
   "Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
   ```
 
-  <img src="./img/output_prompt.png" width="600"/>
+  <img src="https://github.com/com3dian/pretty_prompt_compare/blob/main/img/output_prompt.png" width="600"/>
 
   The two prompts on either side of the `|pretty_compare|` operation will be printed using the following format:
 
@@ -57,7 +57,7 @@ pip install pretty_prompt_compare
   "Hello beautiful {world}" |pretty_compare| "Hello brave {world}"
   ```
 
-  <img src="./img/output_response.png" width="600"/>
+  <img src="https://github.com/com3dian/pretty_prompt_compare/blob/main/img/output_response.png" width="600"/>
 
   The responses are displayed in a similar format to the prompts, with the additional feature that target strings are highlighted using `COLOR_PALETTE["focus"]` with <ins>underline</ins> and **bold**.
 
