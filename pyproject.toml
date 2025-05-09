@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pretty_prompt_compare"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Zehao Lu", email="com3dian@outlook.com" },
 ]
@@ -21,13 +21,12 @@ dependencies = [
   "infix",
 ]
 
-[tool.poetry.dependencies]
-rich = "^16.1.1"
-infix = "^1.2"
-
 [project.urls]
 Homepage = "https://github.com/com3dian/pretty_prompt_compare"
 Issues = "https://github.com/com3dian/pretty_prompt_compare/issues"
 
+[tool.hatch.build]
+sources = ["src"]
+
 [tool.hatch.build.targets.wheel]
-packages = ["pretty_prompt_compare/src"]
+packages = ["pretty_prompt_compare"]
